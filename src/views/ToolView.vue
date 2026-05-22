@@ -35,6 +35,7 @@ const toolComponent = computed(() => {
     'json-format': defineAsyncComponent(() => import('@/components/tools/JsonFormatter.vue')),
     'base64-encode': defineAsyncComponent(() => import('@/components/tools/Base64Encoder.vue')),
     'csv-parser': defineAsyncComponent(() => import('@/components/tools/CsvParser.vue')),
+    'timestamp-converter': defineAsyncComponent(() => import('@/components/tools/TimestampConverter.vue')),
     'color-converter': defineAsyncComponent(() => import('@/components/tools/ColorConverter.vue')),
     'password-generator': defineAsyncComponent(() => import('@/components/tools/PasswordGenerator.vue')),
     // 在这里添加更多工具组件的映射

@@ -30,6 +30,14 @@ export const toolCategories: ToolCategory[] = [
         icon: '📊',
         category: 'text',
         path: '/tools/text/csv-parser'
+      },
+      {
+        id: 'timestamp-converter',
+        name: '时间戳转换',
+        description: 'Unix 时间戳与日期格式互相转换',
+        icon: '🕒',
+        category: 'text',
+        path: '/tools/text/timestamp-converter'
       }
     ]
   },
