@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import AppLayout from '@/components/AppLayout.vue'
 import { toolCategories } from '@/data/tools'
-import { RouterLink, useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
-const handleToolClick = (path: string, name: string) => {
+const handleToolClick = (path: string) => {
   router.push(path).catch(err => {
     console.error('路由跳转失败:', err)
   })
@@ -63,7 +63,7 @@ const handleToolClick = (path: string, name: string) => {
               <div 
                 v-for="tool in category.tools" 
                 :key="tool.id"
-                @click="handleToolClick(tool.path, tool.name)"
+                @click="handleToolClick(tool.path)"
                 class="block p-3 rounded-xl hover:bg-gradient-to-r hover:from-primary/10 hover:to-secondary/10 transition-all duration-200 cursor-pointer border border-transparent hover:border-primary/30 group/tool"
               >
                 <div class="flex items-center">
