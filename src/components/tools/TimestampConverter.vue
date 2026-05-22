@@ -108,16 +108,19 @@ onUnmounted(() => {
           <h2 class="card-title text-primary mb-4">
             <span class="text-2xl">🕒</span> 时间戳转日期
           </h2>
-          <div class="form-control gap-4">
-            <div class="join w-full">
-              <input 
-                type="text" 
-                v-model="timestampInput" 
-                placeholder="输入时间戳 (秒或毫秒)" 
-                class="input input-bordered join-item w-full focus:outline-none"
-                @keyup.enter="convertToDate"
-              />
-              <button class="btn btn-primary join-item" @click="convertToDate">转换</button>
+          <div class="form-control gap-6">
+            <div class="flex flex-col gap-2">
+              <span class="text-xs font-bold opacity-50 uppercase tracking-wider">时间戳输入</span>
+              <div class="join w-full shadow-sm">
+                <input 
+                  type="text" 
+                  v-model="timestampInput" 
+                  placeholder="输入时间戳 (秒或毫秒)" 
+                  class="input input-bordered join-item w-full focus:outline-none"
+                  @keyup.enter="convertToDate"
+                />
+                <button class="btn btn-primary join-item px-6" @click="convertToDate">转换</button>
+              </div>
             </div>
             <div class="flex gap-2">
               <button class="btn btn-outline btn-xs" @click="setNowTimestamp">当前时间戳</button>
@@ -144,16 +147,19 @@ onUnmounted(() => {
           <h2 class="card-title text-secondary mb-4">
             <span class="text-2xl">📅</span> 日期转时间戳
           </h2>
-          <div class="form-control gap-4">
-            <div class="join w-full">
-              <input 
-                type="text" 
-                v-model="dateInput" 
-                placeholder="YYYY-MM-DD HH:mm:ss" 
-                class="input input-bordered join-item w-full focus:outline-none"
-                @keyup.enter="convertToTimestamp"
-              />
-              <button class="btn btn-secondary join-item" @click="convertToTimestamp">转换</button>
+          <div class="form-control gap-6">
+            <div class="flex flex-col gap-2">
+              <span class="text-xs font-bold opacity-50 uppercase tracking-wider">日期时间输入</span>
+              <div class="join w-full shadow-sm">
+                <input 
+                  type="text" 
+                  v-model="dateInput" 
+                  placeholder="YYYY-MM-DD HH:mm:ss" 
+                  class="input input-bordered join-item w-full focus:outline-none"
+                  @keyup.enter="convertToTimestamp"
+                />
+                <button class="btn btn-secondary join-item px-6" @click="convertToTimestamp">转换</button>
+              </div>
             </div>
             <div class="flex gap-2">
               <button class="btn btn-outline btn-xs" @click="setNowDate">当前时间</button>

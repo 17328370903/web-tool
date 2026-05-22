@@ -42,6 +42,46 @@ export const toolCategories: ToolCategory[] = [
     ]
   },
   {
+    id: 'image',
+    name: '图片工具',
+    description: '图片裁剪、切分、转换等工具',
+    icon: '🖼️',
+    tools: [
+      {
+        id: 'image-processor',
+        name: '图片九宫格切分',
+        description: '一键将图片切分为 9 张图，支持批量下载',
+        icon: '✂️',
+        category: 'image',
+        path: '/tools/image/image-processor'
+      },
+      {
+        id: 'image-compressor',
+        name: '图片压缩',
+        description: '在线压缩图片大小，支持质量与尺寸调整',
+        icon: '📉',
+        category: 'image',
+        path: '/tools/image/image-compressor'
+      },
+      {
+        id: 'image-base64',
+        name: '图片 Base64',
+        description: '将图片转换为 Base64 编码，支持文件和 URL',
+        icon: '🔗',
+        category: 'image',
+        path: '/tools/image/image-base64'
+      },
+      {
+        id: 'favicon-generator',
+        name: 'Favicon 在线制作',
+        description: '快速将图片转换为多种尺寸的浏览器图标',
+        icon: '🎯',
+        category: 'image',
+        path: '/tools/image/favicon-generator'
+      }
+    ]
+  },
+  {
     id: 'convert',
     name: '转换工具',
     description: '单位转换、格式转换等工具',

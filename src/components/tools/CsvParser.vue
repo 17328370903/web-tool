@@ -237,9 +237,9 @@ const exportToJson = (file: CsvData) => {
     </div>
 
     <!-- 文件标签页切换 -->
-    <div v-if="fileList.length > 0" class="flex flex-col gap-4">
-      <div class="flex items-center justify-between">
-        <div class="tabs tabs-boxed bg-base-200/50 p-1 gap-1 overflow-x-auto max-w-[calc(100%-120px)] flex-nowrap">
+    <div v-if="fileList.length > 0" class="flex flex-col gap-6">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div class="tabs tabs-boxed bg-base-200/50 p-1 gap-1 overflow-x-auto w-full md:w-auto md:max-w-[calc(100%-140px)] flex-nowrap">
           <div 
             v-for="(file, index) in fileList" 
             :key="file.id"
@@ -247,14 +247,14 @@ const exportToJson = (file: CsvData) => {
             :class="{ 'tab-active bg-primary text-primary-content shadow-sm': activeFileIndex === index }"
             @click="activeFileIndex = index"
           >
-            <span class="max-w-[150px] truncate">{{ file.name }}</span>
+            <span class="max-w-[120px] sm:max-w-[200px] truncate">{{ file.name }}</span>
             <button 
               @click.stop="removeFile(index)" 
               class="btn btn-ghost btn-xs btn-circle hover:bg-black/10 text-current"
             >✕</button>
           </div>
         </div>
-        <button @click="clearAllFiles" class="btn btn-ghost btn-sm text-error gap-2 whitespace-nowrap">
+        <button @click="clearAllFiles" class="btn btn-ghost btn-sm text-error gap-2 self-end md:self-auto whitespace-nowrap">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
           </svg>
@@ -263,24 +263,28 @@ const exportToJson = (file: CsvData) => {
       </div>
 
       <!-- 当前文件操作栏 -->
-      <div class="flex justify-between items-center gap-3">
-        <div class="flex items-center gap-4">
-          <div class="flex items-center gap-2">
-            <span class="text-sm opacity-60">每页显示:</span>
-            <select v-model="pageSize" class="select select-bordered select-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20">
+      <div class="flex flex-col xl:flex-row xl:items-center justify-between gap-6 border-b border-base-200 pb-6">
+        <div class="flex flex-col md:flex-row items-stretch md:items-center gap-6">
+          <!-- 每页显示 -->
+          <div class="flex flex-col gap-2">
+            <span class="text-xs font-bold opacity-50 uppercase tracking-wider">每页显示</span>
+            <select v-model="pageSize" class="select select-bordered select-sm w-full md:w-[120px] rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20">
               <option v-for="opt in pageSizeOptions" :key="opt" :value="opt">{{ opt }} 条</option>
             </select>
           </div>
           
-          <div class="flex items-center gap-2 border-l border-base-300 pl-4">
-            <span class="text-sm opacity-60">JSON 格式:</span>
-            <select v-model="exportFormat" class="select select-bordered select-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20">
-              <option v-for="fmt in exportFormats" :key="fmt.id" :value="fmt.id">{{ fmt.label }}</option>
-            </select>
+          <!-- 导出配置 -->
+          <div class="flex flex-col md:flex-row items-stretch md:items-end gap-4 md:border-l md:border-base-300 md:pl-6">
+            <div class="flex flex-col gap-2">
+              <span class="text-xs font-bold opacity-50 uppercase tracking-wider">JSON 导出格式</span>
+              <select v-model="exportFormat" class="select select-bordered select-sm w-full md:w-[180px] rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20">
+                <option v-for="fmt in exportFormats" :key="fmt.id" :value="fmt.id">{{ fmt.label }}</option>
+              </select>
+            </div>
             <button 
               v-if="currentFileData"
               @click="exportToJson(currentFileData)" 
-              class="btn btn-primary btn-sm gap-2 shadow-sm ml-2"
+              class="btn btn-primary btn-sm gap-2 shadow-md h-8 px-6"
               :title="exportFormats.find(f => f.id === exportFormat)?.desc"
             >
               <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -290,8 +294,14 @@ const exportToJson = (file: CsvData) => {
             </button>
           </div>
         </div>
-        <div class="text-sm font-medium text-primary flex items-center gap-2">
-          <span class="text-lg">📄</span> {{ currentFileData?.name }}
+
+        <!-- 当前文件名展示 -->
+        <div class="flex items-center gap-3 bg-primary/5 p-4 rounded-2xl xl:bg-transparent xl:p-0">
+          <span class="text-3xl xl:text-2xl">📄</span>
+          <div class="flex flex-col">
+            <span class="text-xs opacity-50 xl:hidden">当前正在解析</span>
+            <span class="font-bold text-primary truncate max-w-[200px] sm:max-w-md xl:max-w-xs">{{ currentFileData?.name }}</span>
+          </div>
         </div>
       </div>
 
@@ -324,14 +334,14 @@ const exportToJson = (file: CsvData) => {
             文件为空或解析不到数据
           </div>
           
-          <div class="p-4 bg-base-200/50 border-t border-base-300 flex justify-between items-center text-sm text-base-content/60">
+          <div class="p-4 bg-base-200/50 border-t border-base-300 flex flex-col sm:flex-row justify-between items-center gap-2 text-sm text-base-content/60">
             <span>共计 {{ currentFileData.rows.length }} 行数据</span>
             <span>当前显示第 {{ (currentPage - 1) * pageSize + 1 }} - {{ Math.min(currentPage * pageSize, currentFileData.rows.length) }} 行</span>
           </div>
         </div>
 
         <!-- 分页控制 -->
-        <div v-if="totalPages > 1" class="flex justify-center items-center gap-2 py-2">
+        <div v-if="totalPages > 1" class="flex justify-center items-center gap-2 py-2 overflow-x-auto">
           <div class="join shadow-sm">
             <button 
               class="join-item btn btn-sm btn-outline" 
