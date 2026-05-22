@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
+import { showToast } from '@/utils/toast'
 
 const inputColor = ref('#3b82f6')
 const hex = ref('#3b82f6')
@@ -113,7 +114,12 @@ const handleInput = () => {
 }
 
 const copyToClipboard = async (text: string) => {
-  await navigator.clipboard.writeText(text)
+  try {
+    await navigator.clipboard.writeText(text)
+    showToast(`已复制: ${text}`)
+  } catch (err) {
+    showToast('复制失败', 'error')
+  }
 }
 
 // 监听原生颜色选择器的变化

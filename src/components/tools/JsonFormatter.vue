@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { showToast } from '@/utils/toast'
 
 const input = ref('')
 const output = ref('')
@@ -43,7 +44,12 @@ const clearAll = () => {
 
 const copyOutput = async () => {
   if (output.value) {
-    await navigator.clipboard.writeText(output.value)
+    try {
+      await navigator.clipboard.writeText(output.value)
+      showToast('JSON 已复制到剪贴板')
+    } catch (err) {
+      showToast('复制失败', 'error')
+    }
   }
 }
 </script>
