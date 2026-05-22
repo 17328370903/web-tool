@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, defineAsyncComponent } from 'vue'
+import { computed, defineAsyncComponent, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import AppLayout from '@/components/AppLayout.vue'
 import { getToolById } from '@/data/tools'
@@ -10,6 +10,22 @@ const route = useRoute()
 const toolId = computed(() => route.params.toolId as string)
 const tool = computed(() => getToolById(toolId.value))
 
+// SEO 动态更新
+watch(tool, (newTool) => {
+  if (newTool) {
+    // 更新标题
+    document.title = `${newTool.name} - Web ToolBox (程序员在线工具箱)`
+    
+    // 更新描述
+    const descriptionMeta = document.querySelector('meta[name="description"]')
+    if (descriptionMeta) {
+      descriptionMeta.setAttribute('content', `${newTool.description} - Web ToolBox 提供的在线${newTool.name}工具。所有处理均在本地进行，安全可靠。`)
+    }
+  } else {
+    document.title = 'Web ToolBox - 程序员在线工具箱'
+  }
+}, { immediate: true })
+
 // 动态加载工具组件
 const toolComponent = computed(() => {
   if (!tool.value) return null
@@ -18,6 +34,7 @@ const toolComponent = computed(() => {
   const componentMap: Record<string, any> = {
     'json-format': defineAsyncComponent(() => import('@/components/tools/JsonFormatter.vue')),
     'base64-encode': defineAsyncComponent(() => import('@/components/tools/Base64Encoder.vue')),
+    'csv-parser': defineAsyncComponent(() => import('@/components/tools/CsvParser.vue')),
     'color-converter': defineAsyncComponent(() => import('@/components/tools/ColorConverter.vue')),
     'password-generator': defineAsyncComponent(() => import('@/components/tools/PasswordGenerator.vue')),
     // 在这里添加更多工具组件的映射

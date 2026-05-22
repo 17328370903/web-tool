@@ -22,6 +22,14 @@ export const toolCategories: ToolCategory[] = [
         icon: '🔐',
         category: 'text',
         path: '/tools/text/base64-encode'
+      },
+      {
+        id: 'csv-parser',
+        name: 'CSV 解析器',
+        description: '解析 CSV 文件并展示内容',
+        icon: '📊',
+        category: 'text',
+        path: '/tools/text/csv-parser'
       }
     ]
   },

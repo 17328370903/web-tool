@@ -1,9 +1,19 @@
 <script setup lang="ts">
+import { onMounted } from 'vue'
 import AppLayout from '@/components/AppLayout.vue'
 import { toolCategories } from '@/data/tools'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
+
+// 首页 SEO 初始化
+onMounted(() => {
+  document.title = 'Web ToolBox - 程序员在线工具箱 (JSON格式化, CSV解析, Base64编解码)'
+  const descriptionMeta = document.querySelector('meta[name="description"]')
+  if (descriptionMeta) {
+    descriptionMeta.setAttribute('content', '免费开源的在线程序员工具箱，提供 JSON 格式化、CSV 解析器、Base64 编解码、颜色转换、密码生成等多种实用工具。所有处理均在本地进行，安全可靠。')
+  }
+})
 
 const handleToolClick = (path: string) => {
   router.push(path).catch(err => {
