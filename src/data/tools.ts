@@ -78,6 +78,14 @@ export const toolCategories: ToolCategory[] = [
         icon: '🎯',
         category: 'image',
         path: '/tools/image/favicon-generator'
+      },
+      {
+        id: 'nine-grid-text',
+        name: '九宫格文字',
+        description: '生成精美的九宫格文字切片图片',
+        icon: '✍️',
+        category: 'image',
+        path: '/tools/image/nine-grid-text'
       }
     ]
   },

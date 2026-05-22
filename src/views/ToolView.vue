@@ -40,6 +40,7 @@ const toolComponent = computed(() => {
     'image-compressor': defineAsyncComponent(() => import('@/components/tools/ImageCompressor.vue')),
     'image-base64': defineAsyncComponent(() => import('@/components/tools/ImageBase64.vue')),
     'favicon-generator': defineAsyncComponent(() => import('@/components/tools/FaviconGenerator.vue')),
+    'nine-grid-text': defineAsyncComponent(() => import('@/components/tools/NineGridText.vue')),
     'color-converter': defineAsyncComponent(() => import('@/components/tools/ColorConverter.vue')),
     'password-generator': defineAsyncComponent(() => import('@/components/tools/PasswordGenerator.vue')),
     // 在这里添加更多工具组件的映射
