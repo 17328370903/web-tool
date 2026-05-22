@@ -277,7 +277,7 @@ onMounted(() => {
               <span>📱</span> 九宫格预览
             </h3>
             
-            <div class="bg-base-200 rounded-3xl p-4 sm:p-8 aspect-square max-w-2xl mx-auto shadow-inner border border-base-300">
+            <div class="bg-base-200 rounded-3xl p-4 sm:p-8 aspect-square w-full max-w-2xl mx-auto shadow-inner border border-base-300">
               <div class="grid grid-cols-3 gap-2 sm:gap-4 h-full">
                 <div 
                   v-for="(img, index) in gridImages" 

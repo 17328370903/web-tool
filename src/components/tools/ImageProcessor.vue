@@ -121,7 +121,7 @@ const reset = () => {
             </h3>
             <button @click="reset" class="btn btn-ghost btn-sm text-error">更换图片</button>
           </div>
-          <div class="relative bg-base-300 rounded-3xl overflow-hidden border-4 border-base-200 aspect-square flex items-center justify-center shadow-inner">
+          <div class="relative bg-base-300 rounded-3xl overflow-hidden border-4 border-base-200 aspect-square w-full flex items-center justify-center shadow-inner">
             <img :src="originalImage" class="max-w-full max-h-full object-contain" />
           </div>
         </div>
@@ -155,7 +155,7 @@ const reset = () => {
             </div>
           </div>
 
-          <div class="bg-base-200 rounded-3xl p-6 aspect-square border-4 border-base-100 shadow-inner">
+          <div class="bg-base-200 rounded-3xl p-4 sm:p-6 aspect-square w-full border-4 border-base-100 shadow-inner">
             <div v-if="gridImages.length > 0" class="grid grid-cols-3 gap-3 h-full">
               <div 
                 v-for="(img, index) in gridImages" 

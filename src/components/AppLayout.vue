@@ -48,7 +48,7 @@ onUnmounted(() => {
 <template>
   <div class="min-h-screen bg-gradient-to-br from-base-200 via-base-100 to-base-200 flex flex-col">
     <!-- 顶部导航栏 -->
-    <div class="navbar bg-base-100/80 backdrop-blur-lg shadow-lg sticky top-0 z-50 border-b border-base-300/50 h-16">
+    <div class="navbar bg-base-100/80 backdrop-blur-lg shadow-lg sticky top-0 z-50 border-b border-base-300/50 min-h-16 pt-[env(safe-area-inset-top)]">
       <div class="navbar-start">
         <button @click="toggleSidebar" class="btn btn-ghost btn-circle hover:bg-primary/10 transition-all duration-300">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -78,7 +78,7 @@ onUnmounted(() => {
           'fixed inset-y-16 lg:static h-[calc(100vh-4rem)]'
         ]"
       >
-        <div class="p-6 h-full overflow-y-auto w-72">
+        <div class="p-6 h-full overflow-y-auto w-72 pb-[calc(1.5rem+env(safe-area-inset-bottom))]">
           <h3 class="font-black text-xs uppercase tracking-[0.2em] opacity-40 mb-6 flex items-center px-2">
             <span class="mr-2">📚</span>
             <span>工具分类</span>
@@ -118,7 +118,7 @@ onUnmounted(() => {
       ></div>
 
       <!-- 主内容区 -->
-      <main class="flex-1 overflow-y-auto p-4 sm:p-8 md:p-12">
+      <main class="flex-1 overflow-y-auto p-4 sm:p-8 md:p-12 pb-[calc(1rem+env(safe-area-inset-bottom))]">
         <div class="max-w-screen-2xl mx-auto">
           <slot />
         </div>

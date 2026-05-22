@@ -86,7 +86,7 @@ onUnmounted(() => {
 <template>
   <div class="space-y-8">
     <!-- 当前时间显示 -->
-    <div class="stats shadow bg-base-200 w-full">
+    <div class="stats stats-vertical lg:stats-horizontal shadow bg-base-200 w-full">
       <div class="stat place-items-center">
         <div class="stat-title">当前本地时间 (Local)</div>
         <div class="stat-value text-primary font-mono">{{ formatDate(now) }}</div>

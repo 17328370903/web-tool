@@ -142,7 +142,7 @@ const clearAll = () => {
           <h3 class="font-bold text-lg mb-4 flex items-center gap-2">
             <span>🖼️</span> 效果预览
           </h3>
-          <div class="relative bg-base-200 rounded-2xl aspect-video overflow-hidden border border-base-300 flex items-center justify-center shadow-inner">
+          <div class="relative bg-base-200 rounded-2xl aspect-video w-full overflow-hidden border border-base-300 flex items-center justify-center shadow-inner">
             <img v-if="previewUrl" :src="previewUrl" class="max-w-full max-h-full object-contain" />
             <div v-else class="text-base-content/20 flex flex-col items-center gap-2">
               <span class="text-5xl">🔭</span>

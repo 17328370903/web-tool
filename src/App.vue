@@ -7,7 +7,7 @@ import { toasts } from '@/utils/toast'
   <RouterView />
   
   <!-- 全局 Toast 容器 -->
-  <div class="toast toast-end toast-bottom z-[100] p-4">
+  <div class="toast toast-end toast-bottom z-[100] p-4 mb-[env(safe-area-inset-bottom)]">
     <div 
       v-for="toast in toasts" 
       :key="toast.id" 

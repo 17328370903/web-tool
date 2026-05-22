@@ -245,7 +245,7 @@ const reset = () => {
         <div class="lg:col-span-2 space-y-4">
           <div class="flex flex-col gap-4">
             <h3 class="font-bold text-lg">压缩效果预览</h3>
-            <div class="relative bg-base-300 rounded-3xl overflow-hidden border-4 border-base-200 aspect-video flex items-center justify-center shadow-inner">
+            <div class="relative bg-base-300 rounded-3xl overflow-hidden border-4 border-base-200 aspect-video w-full flex items-center justify-center shadow-inner">
               <div v-if="isLoading" class="absolute inset-0 z-10 bg-black/20 backdrop-blur-sm flex items-center justify-center">
                 <span class="loading loading-spinner loading-lg text-white"></span>
               </div>

@@ -1,6 +1,31 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+/* iOS 适配 */
+:root {
+  --safe-area-inset-top: env(safe-area-inset-top);
+  --safe-area-inset-right: env(safe-area-inset-right);
+  --safe-area-inset-bottom: env(safe-area-inset-bottom);
+  --safe-area-inset-left: env(safe-area-inset-left);
+}
+
+/* 防止 iOS 自动缩放 */
+@media screen and (max-width: 768px) {
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* 移除移动端点击高亮 */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 优化滚动体验 */
+body {
+  -webkit-overflow-scrolling: touch;
+}
+
 /* 自定义滚动条 */
 ::-webkit-scrollbar {
   width: 8px;
