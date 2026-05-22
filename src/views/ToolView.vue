@@ -45,7 +45,7 @@ const toolComponent = computed(() => {
 
       <!-- 工具内容区域 -->
       <div class="card bg-base-100 shadow-2xl border border-base-300/50 hover:shadow-3xl transition-shadow duration-300">
-        <div class="card-body p-8">
+        <div class="card-body p-4 sm:p-8">
           <!-- 动态加载工具组件 -->
           <component v-if="toolComponent" :is="toolComponent" />
           
