@@ -19,7 +19,7 @@ const handleToolClick = (path: string) => {
       <div class="hero min-h-[400px] rounded-2xl mb-8 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10 animate-gradient shadow-2xl">
         <div class="hero-content text-center">
           <div class="max-w-2xl">
-            <h1 class="text-6xl font-bold mb-6 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent animate-pulse">
+            <h1 class="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent animate-pulse">
               🔧 Web Tool
             </h1>
             <p class="py-6 text-xl text-base-content/80 leading-relaxed">
@@ -42,7 +42,7 @@ const handleToolClick = (path: string) => {
       </div>
 
       <!-- 工具分类展示 -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         <div 
           v-for="(category, index) in toolCategories" 
           :key="category.id"

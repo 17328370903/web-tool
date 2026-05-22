@@ -1,10 +1,14 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
-import { RouterLink, useRouter } from 'vue-router'
+import { ref, onMounted, onUnmounted, computed } from 'vue'
+import { RouterLink, useRouter, useRoute } from 'vue-router'
 import { toolCategories } from '@/data/tools'
 
 const router = useRouter()
+const route = useRoute()
 const isSidebarOpen = ref(window.innerWidth > 1024)
+let lastWidth = window.innerWidth
+
+const currentPath = computed(() => route.path)
 
 const toggleSidebar = () => {
   isSidebarOpen.value = !isSidebarOpen.value
@@ -20,9 +24,16 @@ const handleToolClick = (path: string) => {
 }
 
 const handleResize = () => {
-  if (window.innerWidth > 1024) {
+  const currentWidth = window.innerWidth
+  // 只有在从移动端切换到桌面端时才自动打开
+  if (currentWidth > 1024 && lastWidth <= 1024) {
     isSidebarOpen.value = true
   }
+  // 只有在从桌面端切换到移动端时才自动关闭
+  if (currentWidth <= 1024 && lastWidth > 1024) {
+    isSidebarOpen.value = false
+  }
+  lastWidth = currentWidth
 }
 
 onMounted(() => {
@@ -44,9 +55,9 @@ onUnmounted(() => {
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
-        <RouterLink to="/" class="btn btn-ghost text-xl ml-2 hover:scale-105 transition-transform duration-300 px-2">
-          <span class="text-2xl mr-2 hidden sm:inline">🔧</span>
-          <span class="font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Web Tool</span>
+        <RouterLink to="/" class="btn btn-ghost text-lg ml-2 hover:scale-105 transition-transform duration-300 px-2" :class="currentPath === '/' ? 'text-primary' : ''">
+          <span class="text-xl mr-2 hidden sm:inline">🔧</span>
+          <span class="font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent" :class="currentPath === '/' ? 'from-primary to-primary' : ''">Web Tool</span>
         </RouterLink>
       </div>
       <div class="navbar-end">
@@ -61,10 +72,10 @@ onUnmounted(() => {
     <div class="flex-1 flex overflow-hidden relative">
       <!-- 侧边栏 -->
       <aside 
-        class="bg-base-100/95 backdrop-blur-md shadow-2xl transition-all duration-300 border-r border-base-300/50 z-40"
+        class="bg-base-100/95 backdrop-blur-md shadow-2xl transition-all duration-300 z-40 overflow-hidden"
         :class="[
-          isSidebarOpen ? 'w-72 translate-x-0' : 'w-0 -translate-x-full',
-          'fixed inset-y-16 lg:static'
+          isSidebarOpen ? 'w-72 translate-x-0 border-r border-base-300/50' : 'w-0 -translate-x-full lg:translate-x-0 border-none',
+          'fixed inset-y-16 lg:static h-[calc(100vh-4rem)]'
         ]"
       >
         <div class="p-6 h-full overflow-y-auto w-72">
@@ -82,9 +93,14 @@ onUnmounted(() => {
                 <li v-for="tool in category.tools" :key="tool.id">
                   <a 
                     @click.prevent="handleToolClick(tool.path)" 
-                    class="cursor-pointer flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary hover:text-primary-content transition-all duration-200 group active:scale-95"
+                    class="cursor-pointer flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 group active:scale-95"
+                    :class="[
+                      currentPath === tool.path 
+                        ? 'bg-primary text-primary-content shadow-md shadow-primary/20' 
+                        : 'hover:bg-primary/10 hover:text-primary'
+                    ]"
                   >
-                    <span class="text-xl group-hover:scale-110 transition-transform">{{ tool.icon }}</span>
+                    <span class="text-xl group-hover:scale-110 transition-transform" :class="currentPath === tool.path ? '' : 'group-hover:rotate-12'">{{ tool.icon }}</span>
                     <span class="font-medium">{{ tool.name }}</span>
                   </a>
                 </li>
@@ -103,7 +119,7 @@ onUnmounted(() => {
 
       <!-- 主内容区 -->
       <main class="flex-1 overflow-y-auto p-4 sm:p-8 md:p-12">
-        <div class="max-w-5xl mx-auto">
+        <div class="max-w-screen-2xl mx-auto">
           <slot />
         </div>
       </main>

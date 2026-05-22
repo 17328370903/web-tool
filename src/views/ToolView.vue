@@ -29,16 +29,16 @@ const toolComponent = computed(() => {
 
 <template>
   <AppLayout>
-    <div v-if="tool" class="max-w-6xl mx-auto animate-fade-in">
+    <div v-if="tool" class="w-full animate-fade-in">
       <!-- 工具标题 -->
       <div class="mb-8">
         <div class="flex items-center gap-4 mb-3">
-          <span class="text-6xl filter drop-shadow-lg animate-bounce">{{ tool.icon }}</span>
+          <span class="text-4xl filter drop-shadow-lg animate-bounce">{{ tool.icon }}</span>
           <div>
-            <h1 class="text-5xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            <h1 class="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               {{ tool.name }}
             </h1>
-            <p class="text-base-content/70 mt-2 text-lg">{{ tool.description }}</p>
+            <p class="text-base-content/70 mt-2 text-base">{{ tool.description }}</p>
           </div>
         </div>
       </div>
